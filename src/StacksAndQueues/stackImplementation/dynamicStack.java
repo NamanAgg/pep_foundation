@@ -1,4 +1,4 @@
-package StacksAndQueues;
+package StacksAndQueues.stackImplementation;
 
 public class dynamicStack extends stack {
 

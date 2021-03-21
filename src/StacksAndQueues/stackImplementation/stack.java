@@ -1,4 +1,4 @@
-package StacksAndQueues;
+package StacksAndQueues.stackImplementation;
 
 public class stack {
     protected int[] arr = null;

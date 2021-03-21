@@ -1,4 +1,4 @@
-package StacksAndQueues;
+package StacksAndQueues.stackImplementation;
 
 public class client {
     public static void main(String[] args) throws Exception {
