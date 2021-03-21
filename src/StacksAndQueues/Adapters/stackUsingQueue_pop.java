@@ -7,36 +7,39 @@ public class stackUsingQueue_pop {
     Queue<Integer> temp = new LinkedList<>();
 
     public int size() {
-        return que.size();
+        return this.que.size();
     }
 
     public boolean isEmpty() {
-        return que.isEmpty();
+        return this.que.isEmpty();
     }
 
     private void transferToAnotherQueue() {
-    	while(que.size()!=0) {
-    		temp.add(que.remove());
+    	while(this.que.size()!=0) {
+    		this.temp.add(this.que.remove());
     	}
     	
-    	que=temp;
-    	temp=new LinkedList<>();
+    	this.que=this.temp;
+    	this.temp=new LinkedList<>();
     }
 
     // O(n)
     public void push(int data) {
-       temp.add(data);
-       transferToAnotherQueue();
+       this.temp.add(data);
+       this.transferToAnotherQueue();
     }
 
     // O(1)
     public int peek() {
-        return que.peek();
+        return this.que.peek();
     }
+    
+    
+    
 
     // O(1)
     public int pop() {
-        return que.remove();
+        return this.que.remove();
        
     }
 }
