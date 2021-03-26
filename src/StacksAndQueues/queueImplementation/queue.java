@@ -61,7 +61,7 @@ public class queue {
 	        }
 	    }
 
-	    // stack functions=========================================
+	    // queue functions=========================================
 	    protected void push_(int data) {
 	        this.arr[this.back] = data;
 
