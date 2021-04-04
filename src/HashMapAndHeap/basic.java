@@ -1,6 +1,7 @@
-package HashMap;
+package HashMapAndHeap;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 public class basic {
 	public static void basic_01() { 
 	  HashMap<String, Integer> map = new HashMap<>();
@@ -39,6 +40,7 @@ public class basic {
           char ch = str.charAt(i);
           map.put(ch, map.getOrDefault(ch, 0) + 1);
       }
+      System.out.println(map);
   }
 
   public static void highestFreqChar(String str) {
@@ -49,6 +51,8 @@ public class basic {
       }
       char ans = ' ';
       int freq = 0;
+      for(int i=0;i<map.size();i++) {
+      }
       for (Character ch : map.keySet()) {
           if (map.get(ch) > freq) {
               freq = map.get(ch);
@@ -115,8 +119,8 @@ public class basic {
 
   public static void main(String[] args) {
       // basic_01();
-      //highestFreqChar("abcbbbccbbbbbbbb");
-	  positionOfAllChar("abcdddfbgbhhhbffcrcaabqqbwwwwbbffeeebddbeeccbb");
+	  positionOfAllChar("abcbbbccbbbbbbbb");
+	  //printFrequency("abcdddfbgbhhhbffcrcaabqqbwwwwbbffeeebddbeeccbb");
   }
 
 }

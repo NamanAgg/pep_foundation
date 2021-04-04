@@ -68,4 +68,41 @@ public class NextGreaterAndNextSmaller {
         }
         return ans;
     }
+    
+    public List<String> topKFrequent(String[] words, int k) {
+        HashMap<String,Integer> map=new HashMap<>();
+         for(String ele:words){
+             map.put(ele,map.getOrDefault(ele,0)+1);
+         }
+         
+         PriorityQueue<String> que=new PriorityQueue<>((a,b)->{
+              if(map.get(a)==map.get(b)){
+                  return b.charAt(0)-a.charAt(0);
+              }
+             return map.get(a)-map.get(b);
+         });
+         
+         for(String ele:map.keySet()){
+             que.add(ele);
+             if(que.size()>k)
+                 que.remove();
+         }
+         
+  LinkedList<String>ans=new LinkedList<>();
+//          PriorityQueue<String>pq=new PriorityQueue<>((a,b)->{
+//             return a.charAt(0)-b.charAt(0);
+//          });
+         
+//          while(que.size()!=0)
+//              pq.add(que.remove());
+         
+//          while(pq.size()!=0)
+//              ans.add(pq.remove());
+         
+         while(que.size()!=0)
+             ans.addFirst(que.remove());
+         return ans;
+         
+     }
+    
 }

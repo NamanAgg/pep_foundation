@@ -43,7 +43,7 @@
 //2
 //2
 //5
-package HashMap;
+package HashMapAndHeap;
 import java.util.*;
 import java.io.*;
 public class getCommonElements2 {

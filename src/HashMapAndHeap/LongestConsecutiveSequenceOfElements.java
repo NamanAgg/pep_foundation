@@ -40,7 +40,7 @@
 //9
 //10
 //11
-package HashMap;
+package HashMapAndHeap;
 import java.util.*;
 import java.io.*;
 public class LongestConsecutiveSequenceOfElements {

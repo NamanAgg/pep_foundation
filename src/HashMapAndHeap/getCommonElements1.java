@@ -51,7 +51,7 @@
 //3
 //5
 //8
-package HashMap;
+package HashMapAndHeap;
 import java.io.*;
 import java.util.*;
 public class getCommonElements1 {
