@@ -189,6 +189,8 @@ public class Crossword {
         for (int ele : arr)
             sum += ele;
 
+        // if there are more subsets than no. of elements in array or sum of all
+        // elements is not divisible by k
         if (sum % k != 0 || arr.length < k)
             return;
 

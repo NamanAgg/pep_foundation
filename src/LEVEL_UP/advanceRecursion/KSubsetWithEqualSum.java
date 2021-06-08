@@ -1,63 +1,108 @@
+//******************K Subsets With Equal Sum
+// 1. You are given an array of n distinct integers.
+// 2. You have to divide these n integers into k non-empty subsets such that sum of integers of every 
+//      subset is same.
+// 3. If it is not possible to divide, then print "-1".
+// Note -> Check out the question video and write the recursive code as it is intended without 
+//         changing signature. The judge can't force you but intends you to teach a concept.
+// Input Format
+// A number n
+// n distinct integers 
+// A number k
+// Output Format
+// Check the sample ouput and question video.
+// Constraints
+// 1 <= n <= 20
+// 1 <= arr[i] <= 100
+// 1 <= k <= n
+// Sample Input
+// 6
+// 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// 3
+// Sample Output
+// [1, 6] [2, 5] [3, 4] 
 package LEVEL_UP.advanceRecursion;
 import java.util.*;
 import java.io.*;
 public class KSubsetWithEqualSum {
-
-	public static ArrayList<ArrayList<Integer>> kSubSetEqualSum(int[]arr,int k){
-		ArrayList<ArrayList<Integer>> ans =new ArrayList<>();
-		
-		int sum=0;
-		
-		for(int ele:arr) 
-			sum+=ele;
-		
-		if(sum % k !=0|| arr.length<k)
-			return ans;
-		
-		for(int i=0;i<k;i++)
-			ans.add(new ArrayList<Integer>());
-		
-		int[]sumArr=new int[k];
-		
-		kSubSetSum(arr,0,sumArr,ans);
-		return ans;
-	}
-	
-	public static void kSubSetSum(int[]arr,int idx,int[]sumArr,ArrayList<ArrayList<Integer>> ans) {
-		if(idx==arr.length) {
-			
-			int sum=sumArr[0];
-			for(int ele:sumArr)
-				if(sum!=ele) 
-					return;
-				
-			
-			for(ArrayList<Integer> list: ans) { 
-					System.out.print(list);
-			}
-			System.out.println();
-			return;
-		}
-
-		for(int i=0;i<sumArr.length;i++) {
-			ans.get(i).add(arr[idx]);
-			sumArr[i]+=arr[idx];
-			kSubSetSum(arr,idx+1,sumArr,ans);
-			sumArr[i]-=arr[idx];
-			ans.get(i).remove(ans.get(i).size()-1);
-		}
-	}
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
 		int n = scn.nextInt();
 		int[] arr = new int[n];
 		int sum = 0;
-		for(int i =  0 ; i < arr.length; i++) {
+		for (int i = 0; i < arr.length; i++) {
 			arr[i] = scn.nextInt();
-			//sum += arr[i];
+			sum += arr[i];
 		}
 		int k = scn.nextInt();
-		kSubSetEqualSum(arr,k);
-		
+		// if k is equal to 1, then whole array is your answer
+		if (k == 0) {
+			System.out.print("[");
+			for (int i = 0; i < arr.length; i++) {
+				System.out.print(arr[i] + ", ");
+			}
+			System.out.println("]");
+			return;
+		}
+		// if there are more subsets than no. of elements in array or sum of all
+		// elements is not divisible by k
+		if (k > n || sum % k != 0) {
+			System.out.println("-1");
+			return;
+		}
+		int[] subsetSum = new int[k];
+		ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+		for (int i = 0; i < k; i++) {
+			ans.add(new ArrayList<>());
+		}
+		solution(arr, 0, n, k, subsetSum, 0, ans);
 	}
+
+	public static void solution(int[] arr, int vidx, int n, int k, int[] subsetSum, int ssssf,
+			ArrayList<ArrayList<Integer>> ans) {
+		if (vidx == arr.length) {
+			if (ssssf == k) {
+				int isum = subsetSum[0];
+				boolean flag = true;
+				for (int i = 1; i < subsetSum.length; i++) {
+					if (subsetSum[i] == isum) {
+						continue;
+					} else {
+						flag = false;
+						break;
+					}
+				}
+				if (flag == true) {
+					for (ArrayList<Integer> a : ans) {
+						System.out.print(a + " ");
+					}
+					System.out.println();
+				}
+			}
+			return;
+		}
+
+		for (int j = 0; j < ans.size(); j++) {
+			if (ans.get(j).size() == 0) {
+				ans.get(j).add(arr[vidx]);
+				subsetSum[j] += arr[vidx];
+				solution(arr, vidx + 1, n, k, subsetSum, ssssf + 1, ans);
+				ans.get(j).remove(ans.get(j).size() - 1);
+				subsetSum[j] -= arr[vidx];
+				break;
+			} else {
+				ans.get(j).add(arr[vidx]);
+				subsetSum[j] += arr[vidx];
+				solution(arr, vidx + 1, n, k, subsetSum, ssssf, ans);
+				ans.get(j).remove(ans.get(j).size() - 1);
+				subsetSum[j] -= arr[vidx];
+			}
+		}
+	}
+
 }

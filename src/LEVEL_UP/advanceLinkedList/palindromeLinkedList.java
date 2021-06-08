@@ -99,7 +99,7 @@ public class palindromeLinkedList {
             prev.next = new ListNode(scn.nextInt());
             prev = prev.next;
         }
-
+     
         System.out.println(isPalindrome(dummy.next));
     }	
 }
