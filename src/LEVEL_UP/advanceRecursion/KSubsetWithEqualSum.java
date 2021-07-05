@@ -28,7 +28,6 @@
 // [1, 6] [2, 5] [3, 4] 
 package LEVEL_UP.advanceRecursion;
 import java.util.*;
-import java.io.*;
 public class KSubsetWithEqualSum {
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
