@@ -1,58 +1,32 @@
-//************Add After In Doubly Linkedlist
+//*****************Get At In Doubly Linkedlist
 // 1. You are given a partially written DoublyLinkedList class.
-// 2. You are required to complete the body of addAfter function. This function is supposed to add value before given Node. 
+// 2. You are required to complete the body of getAt function. This function is supposed to return value of node at given index. 
 // 3. If size of list is zero then return "ListIsEmpty: -1".
 // 4. If Index is Invalid then return "IndexIsInValid: -1". 
 // 5. You are required to update head, tail and size as required.
 // 6. Input and Output is managed for you. Just update the code in  incomplete function.
-
 // Constraints
 // 0 <= N <= 10^6
 // Sample Input
-// addFirst 4
-// addFirst 4
-// addLast 5
-// addFirst 7
-// getAt 4 3
-// addAt 4 34
-// addAt 0 43
-// removeAt 4
-// addAfter 2 33
-// addAfter 0 33
-// addAfter 4 33
-// removeAt 0
-// addAt 8 545
-// addLast 1
+// addFirst 10
+// addFirst 20
+// addFirst 30
+// addLast 40
+// addLast 50
+// removeLast 
 // removeFirst
-// removeFirst
-// size
-// isEmpty
-// getFirst
-// removeFirst
-// removeLast
-// getLast
-// removeFirst
-// removeFirst
-// addAt 0 345
+// addFirst 90
+// getAt 2
 // stop
 // Sample Output
-// IndexIsInValid: -1
-// IndexIsInValid: -1
-// 33
-// 7
-// 6
-// false
-// 4
-// 4
-// 1
-// 34
-// 33
-// 33
-// [345, 4, 34]
-
+// 50
+// 30
+// 10
+// [90, 20, 10, 40]
 package LEVEL_UP.advanceLinkedList;
 import java.util.*;
-public class addAfterInDoublyLinkedList {
+public class getAtInDoublyLinkedList {
+    
     public static class DoublyLinkedList {
         private class Node {
             int data = 0;
@@ -146,82 +120,6 @@ public class addAfterInDoublyLinkedList {
             addLastNode(node);
         }
 
-        private void addNodeAt(int index, Node node) {
-            if (index == 0)
-                addFirstNode(node);
-            else if (index == this.size)
-                addLastNode(node);
-            else {
-                Node forw = getNodeAt(index);
-                Node prev = forw.prev;
-
-                prev.next = node;
-                node.prev = prev;
-
-                node.next = forw;
-                forw.prev = node;
-
-                this.size++;
-            }
-        }
-
-        public void addAt(int index, int data) {
-            if (indexIsInvalidException(index, 0, this.size))
-                System.out.println(-1);
-            else {
-                Node node = new Node(data);
-                addNodeAt(index, node);
-            }
-        }
-
-        public void addBefore(Node refNode, int data) {
-            Node node = new Node(data);
-            Node prev = refNode.prev;
-
-            if (prev == null) {
-                node.next = refNode;
-                refNode.prev = node;
-                this.head = node;
-            } else {
-                prev.next = node;
-                node.prev = prev;
-
-                node.next = refNode;
-                refNode.prev = node;
-            }
-
-            this.size++;
-        }
-
-        public void addBefore(int idx, int data) {
-            Node node = getNodeAt(idx);
-            addBefore(node, data);
-        }
-
-        public void addAfter(Node refNode, int data) {
-            Node node = new Node(data);
-            Node forw = refNode.next;
-
-            if (forw == null) {
-                refNode.next = node;
-                node.prev = refNode;
-                this.tail = node;
-            } else {
-                forw.prev = node;
-                node.next = forw;
-
-                node.prev = refNode;
-                refNode.next = node;
-            }
-
-            this.size++;
-        }
-
-        public void addAfter(int idx, int data) {
-            Node node = getNodeAt(idx);
-            addAfter(node, data);
-        }
-
         // RemoveFunctions======================================
 
         private Node removeFirstNode() {
@@ -267,37 +165,6 @@ public class addAfterInDoublyLinkedList {
             if (ListIsEmptyException())
                 return -1;
             Node node = removeLastNode();
-            return node.data;
-        }
-
-        private Node removeAtNode(int index) {
-            if (index == 0)
-                return removeFirstNode();
-            else if (index == this.size - 1)
-                return removeLastNode();
-            else {
-                Node node = getNodeAt(index);
-                Node prev = node.prev;
-                Node forw = node.next;
-
-                prev.next = forw;
-                forw.prev = prev;
-
-                node.next = null;
-                node.prev = null;
-
-                this.size--;
-                return node;
-            }
-        }
-
-        public int removeAt(int index) {
-            if (ListIsEmptyException())
-                return -1;
-            if (indexIsInvalidException(index, 0, this.size - 1))
-                return -1;
-
-            Node node = removeAtNode(index);
             return node.data;
         }
 
@@ -362,14 +229,6 @@ public class addAfterInDoublyLinkedList {
                 System.out.println(dll.isEmpty());
             else if (s[0].equals("getAt"))
                 System.out.println(dll.getAt(Integer.parseInt(s[1])));
-            else if (s[0].equals("addAt"))
-                dll.addAt(Integer.parseInt(s[1]), Integer.parseInt(s[2]));
-            else if (s[0].equals("removeAt"))
-                dll.removeAt(Integer.parseInt(s[1]));
-            else if (s[0].equals("addBefore"))
-                dll.addBefore(Integer.parseInt(s[1]), Integer.parseInt(s[2]));
-            else if (s[0].equals("addAfter"))
-                dll.addAfter(Integer.parseInt(s[1]), Integer.parseInt(s[2]));
 
             str = scn.nextLine();
         }

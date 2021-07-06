@@ -1,10 +1,11 @@
-//************Add After In Doubly Linkedlist
+//****************Remove Before In Doubly Linkedlist
 // 1. You are given a partially written DoublyLinkedList class.
-// 2. You are required to complete the body of addAfter function. This function is supposed to add value before given Node. 
+// 2. You are required to complete the body of removeBefore function. This function is supposed to remove value Before given Node. 
 // 3. If size of list is zero then return "ListIsEmpty: -1".
-// 4. If Index is Invalid then return "IndexIsInValid: -1". 
-// 5. You are required to update head, tail and size as required.
-// 6. Input and Output is managed for you. Just update the code in  incomplete function.
+// 4. If Index is Invalid then return "IndexIsInValid: -1".
+// 5. If Location which we want to remove is null then return "LocationIsInvalid: -1".
+// 6. You are required to update head, tail and size as required.
+// 7. Input and Output is managed for you. Just update the code in  incomplete function.
 
 // Constraints
 // 0 <= N <= 10^6
@@ -21,6 +22,8 @@
 // addAfter 0 33
 // addAfter 4 33
 // removeAt 0
+// removeAfter 3
+// removeBefore 3
 // addAt 8 545
 // addLast 1
 // removeFirst
@@ -37,22 +40,24 @@
 // stop
 // Sample Output
 // IndexIsInValid: -1
+// 33
+// 4
 // IndexIsInValid: -1
 // 33
 // 7
-// 6
+// 4
 // false
-// 4
-// 4
+// 33
+// 33
 // 1
 // 34
-// 33
-// 33
-// [345, 4, 34]
-
+// 4
+// 34
+// [345]
 package LEVEL_UP.advanceLinkedList;
 import java.util.*;
-public class addAfterInDoublyLinkedList {
+public class removeBeforInDoublyLinkedList {
+    
     public static class DoublyLinkedList {
         private class Node {
             int data = 0;
@@ -301,6 +306,66 @@ public class addAfterInDoublyLinkedList {
             return node.data;
         }
 
+        private Node removeAfterNode(Node refNode) {
+            Node forw = refNode.next;
+            if (forw.next == null) {
+                refNode.next = null;
+                forw.prev = null;
+                this.tail = refNode;
+            } else {
+                refNode.next = forw.next;
+                forw.next.prev = refNode;
+
+                forw.next = null;
+                forw.prev = null;
+            }
+            this.size--;
+            return forw;
+        }
+
+        public int removeAfter(Node refNode) {
+            if (refNode.next == null) {
+                System.out.print("LocationIsInvalid: ");
+                return -1;
+            }
+            return removeAfterNode(refNode).data;
+        }
+
+        public int removeAfter(int idx) {
+            Node node = getNodeAt(idx);
+            return removeAfter(node);
+        }
+
+        private Node removeBeforeNode(Node refNode) {
+            Node prevNode = refNode.prev;
+            if (prevNode.prev == null) {
+                refNode.prev = null;
+                prevNode.next = null;
+                this.head = refNode;
+            } else {
+                refNode.prev = prevNode.prev;
+                prevNode.prev.next = refNode;
+
+                prevNode.next = null;
+                prevNode.prev = null;
+            }
+            this.size--;
+            return prevNode;
+        }
+
+        public int removeBefore(Node refNode) {
+            if (refNode.prev == null) {
+                System.out.print("LocationIsInvalid: ");
+                return -1;
+            }
+            return removeBeforeNode(refNode).data;
+        }
+
+        public int removeBefore(int idx) {
+            Node node = getNodeAt(idx);
+            return removeBefore(node);
+        }
+
         // getFunctions======================================
 
         public int getFirst() {
@@ -370,6 +435,10 @@ public class addAfterInDoublyLinkedList {
                 dll.addBefore(Integer.parseInt(s[1]), Integer.parseInt(s[2]));
             else if (s[0].equals("addAfter"))
                 dll.addAfter(Integer.parseInt(s[1]), Integer.parseInt(s[2]));
+            else if (s[0].equals("removeAfter"))
+                System.out.println(dll.removeAfter(Integer.parseInt(s[1])));
+            else if (s[0].equals("removeBefore"))
+                System.out.println(dll.removeBefore(Integer.parseInt(s[1])));
 
             str = scn.nextLine();
         }
