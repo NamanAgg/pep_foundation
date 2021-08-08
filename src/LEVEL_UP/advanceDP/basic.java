@@ -1,4 +1,4 @@
-package LEVEL_UP.advanceDP;
+//package LEVEL_UP.advanceDP;
 // 1. Faith
 // 2. Recursive Tree 
 // 3. Recursion Code 
@@ -247,10 +247,43 @@ public class basic {
         return maxGold;
         }
 
+        public static  int getMaximumGold(int[][] grid) {
+        
+            int[][]dir={ {0,1},{1,0},{0,-1},{-1,0}};
+            boolean[][]vis=new boolean[grid.length][grid[0].length];
+            int res=0;
+            
+            for(int i=0;i<grid.length;i++)
+                for(int j=0;j<grid[0].length;j++)
+                    if(grid[i][j]!=0)
+                        res=Math.max(res,dfs(i,j,grid,vis,dir));
+                
+            return res;
+        }
+        
+        public static int dfs(int sr,int sc,int[][]grid,boolean[][]vis,int[][]dir){
+            if(grid[sr][sc]==0) return 0;
+            
+            vis[sr][sc]=true;
+            int res=0;
+            for(int i=0;i<dir.length;i++){
+                int r=sr+dir[i][0];
+                int c=sc+dir[i][1];
+                
+                if(r>=0 && c>=0 && r<grid.length && c<grid[0].length && !vis[r][c] && grid[r][c]!=0)
+                    res=Math.max(res,dfs(r,c,grid,vis,dir));
+            }
+            res+=grid[sr][sc];
+            vis[sr][sc]=false;
+            return res;
+        }
+
 
     public static void main(String[] args){
         // fibo_Set();
         //mazePath_Set();
-        maxGold();
+        //maxGold();
+        int[][]grid={{0,6,0},{5,8,7},{0,9,0}};
+        System.out.println(getMaximumGold(grid));
     }
 }
