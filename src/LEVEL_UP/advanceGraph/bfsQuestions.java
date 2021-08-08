@@ -1,7 +1,9 @@
 import java.util.LinkedList;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.PriorityQueue;
 
 public class bfsQuestions {
 
@@ -202,7 +204,6 @@ public class bfsQuestions {
         return ans;
     }
 
-    //329
     public int longestIncreasingPath(int[][] matrix) {
         int n = matrix.length, m = matrix[0].length;
         LinkedList<Integer> que = new LinkedList<>();
@@ -245,9 +246,7 @@ public class bfsQuestions {
         return level;
     }
 
-    //815
     public int numBusesToDestination(int[][] routes, int source, int target) {
-        if(source==target) return 0;
         int N = routes.length;
         HashMap<Integer, ArrayList<Integer>> map = new HashMap<>(); // busStand to bus mapping
         for (int bus = 0; bus < routes.length; bus++) {
@@ -291,5 +290,98 @@ public class bfsQuestions {
         }
 
         return -1;
+    }
+
+    // 490
+    public boolean hasPath(int[][] maze, int[] start, int[] destination) {
+        int n = maze.length, m = maze[0].length, sr = start[0], sc = start[1], er = destination[0], ec = destination[1];
+        LinkedList<Integer> que = new LinkedList<>();
+        boolean[][] vis = new boolean[n][m];
+        int[][] dir = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+        que.add(sr * m + sc);
+        vis[sr][sc] = true;
+
+        int len = Math.max(n, m);
+        while (que.size() != 0) {
+            int size = que.size();
+            while (size-- > 0) {
+                int idx = que.removeFirst(), i = idx / m, j = idx % m;
+                for (int[] d : dir) {
+                    int r = i, c = j;
+                    while (r >= 0 && c >= 0 && r < n && c < m && maze[r][c] == 0) {
+                        r += d[0];
+                        c += d[1];
+                    }
+
+                    r -= d[0];
+                    c -= d[1];
+
+                    if (vis[r][c])
+                        continue;
+
+                    vis[r][c] = true;
+                    que.addLast(r * m + c);
+                    if (r == er && c == ec)
+                        return true;
+                }
+
+            }
+        }
+
+        return false;
+    }
+
+    // 505
+    public int shortestDistance(int[][] maze, int[] start, int[] destination) {
+        int n = maze.length, m = maze[0].length, sr = start[0], sc = start[1], er = destination[0], ec = destination[1];
+
+        class pair implements Comparable<pair> {
+            int r, c, dis;
+
+            public pair(int r, int c, int dis) {
+                this.r = r;
+                this.c = c;
+                this.dis = dis;
+            }
+
+            public int compareTo(pair o) {
+                return this.dis - o.dis;
+            }
+        }
+
+        PriorityQueue<pair> que = new PriorityQueue<>();
+        int[][] distance = new int[n][m];
+        for (int[] d : distance)
+            Arrays.fill(d, (int) 1e8);
+
+        int[][] dir = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
+
+        pair root = new pair(sr, sc, 0);
+        que.add(root);
+        distance[sr][sc] = 0;
+
+        while (que.size() != 0) {
+            pair p = que.remove();
+            for (int[] d : dir) {
+                int r = p.r, c = p.c, l = p.dis;
+                while (r >= 0 && c >= 0 && r < n && c < m && maze[r][c] == 0) {
+                    r += d[0];
+                    c += d[1];
+                    l++;
+                }
+
+                r -= d[0];
+                c -= d[1];
+                l--;
+
+                if (l >= distance[r][c])
+                    continue;
+
+                que.add(new pair(r, c, l));
+                distance[r][c] = l;
+            }
+        }
+
+        return distance[er][ec] != (int) 1e8 ? distance[er][ec] : -1;
     }
 }
