@@ -7,6 +7,7 @@
 // 6. Tabulation 
 // 7. Optimization
 import java.util.Arrays;
+import java.util.LinkedList;
 public class basic {
     public static void display(int[] arr) {
         for (int ele : arr) {
@@ -278,6 +279,83 @@ public class basic {
             return res;
         }
 
+         // 746
+
+    public int minCost_memo(int n, int[] cost, int[] dp) {
+        if (n <= 1) {
+            return dp[n] = cost[n];
+        }
+
+        if (dp[n] != 0)
+            return dp[n];
+
+        int minCost = Math.min(minCost_memo(n - 1, cost, dp), minCost_memo(n - 2, cost, dp));
+
+        return dp[n] = minCost + (n == cost.length ? 0 : cost[n]);
+    }
+
+    public int minCostClimbingStairs(int[] cost) {
+        int n = cost.length;
+        int[] dp = new int[n + 1];
+
+        return minCost_memo(n, cost, dp);
+    }
+
+    // board Path
+    public static int boardPath_memo(int sp, int ep, int[] dp) {
+        if (sp == ep) {
+            return dp[sp] = 1;
+        }
+        if (dp[sp] != 0)
+            return dp[sp];
+
+        int count = 0;
+        for (int dice = 1; dice <= 6 && sp + dice <= ep; dice++) {
+            count += boardPath_memo(sp + dice, ep, dp);
+        }
+
+        return dp[sp] = count;
+    }
+
+    public static int boardPath_tabu(int SP, int ep, int[] dp) {
+        for (int sp = ep; sp >= SP; sp--) {
+            if (sp == ep) {
+                dp[sp] = 1;
+                continue;
+            }
+
+            int count = 0;
+            for (int dice = 1; dice <= 6 && sp + dice <= ep; dice++) {
+                count += dp[sp + dice];// boardPath_memo(sp + dice, ep, dp);
+            }
+            dp[sp] = count;
+        }
+
+        return dp[SP];
+    }
+
+    public int boradPath_Opti(int n){
+        LinkedList<Integer>ll=new LinkedList<>();
+
+        ll.addLast(1);
+        ll.addLast(1);
+        for(int i=2;i<=n;i++){
+            if(ll.size()<=6)
+                ll.addLast(ll.getLast()*2);
+            else
+                ll.addLast(ll.getLast()*2-ll.removeFirst());
+        }
+
+        return ll.getLast();
+    }
+
+    public static void board_path() {
+        int sp = 0, ep = 20;
+        int[] dp = new int[ep + 1];
+        System.out.println(boardPath_tabu(sp, ep, dp));
+        display(dp);
+    }
+
 
     public static void main(String[] args){
         // fibo_Set();
@@ -286,4 +364,5 @@ public class basic {
         int[][]grid={{0,6,0},{5,8,7},{0,9,0}};
         System.out.println(getMaximumGold(grid));
     }
+
 }
