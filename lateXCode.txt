@@ -70,10 +70,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Links} 
-LinkedIn://  \href{https://www.linkedin.com/in/NamanAgg20}{\custombold{{NamanAgg20}}} \\
-GitHub://  \href{https://www.github.com/NamanAgg}{\custombold{{NamanAgg}}} \\
-LeetCode://  \href{https://www.leetcode.com/namanagg177}{\custombold{{NamanAgg177}}} \\
-HackerRank://  \href{https://www.hackerrank.com/namanagg_2010}{\custombold{{NamanAgg\_2010}}} \\
+LinkedIn://  \href{https://www.linkedin.com/in/NamanAgg20}{\custombold{{NamanAgg20}}} 
+GitHub://  \href{https://www.github.com/NamanAgg}{\custombold{{NamanAgg}}} 
+LeetCode://  \href{https://www.leetcode.com/namanagg177}{\custombold{{NamanAgg177}}} 
+HackerRank://  \href{https://www.hackerrank.com/namanagg_2010}{\custombold{{NamanAgg\_2010}}} 
 \sectionsep
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     COURSEWORK
@@ -90,7 +90,7 @@ HackerRank://  \href{https://www.hackerrank.com/namanagg_2010}{\custombold{{Nama
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Skills}
 \subsection{Programming}
-\vspace{2mm}
+\vspace{1mm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     \location{Over 10000+ lines:}
@@ -108,28 +108,30 @@ HackerRank://  \href{https://www.hackerrank.com/namanagg_2010}{\custombold{{Nama
 \textbullet{} Git \\
 \textbullet{} Puppeteer \\
 \subsection{Database}
-\vspace{2mm}
+\vspace{1mm}
 \textbullet{} MongoDB ( NoSQL ) \\
 \textbullet{} MySQL ( SQL ) \\
 \subsection{Familiar}
-\vspace{2mm}
+\vspace{1mm}
 \textbullet{} Python \\
 \textbullet{} Machine Learning \\
 \textbullet{} MATLAB \\
 \textbullet{} LateX \\
 \textbullet{} Socket.io \\
 \textbullet{} Selenium 
-\sectionsep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     ACHIEVEMENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%=
+\section{ACHIEVEMENTS}
+\textbullet{}Solved 500+ coding problems in  various platforms such as LeetCode, GFG, Coding Blocks, PepCoding, HackerRank. \\
+\textbullet{} Top 5 at CodeBattle organized by Coding Blocks
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     HOBBIES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{HOBBIES}
 \textbullet{} Learning New Technical Skills \\
 \textbullet{} Reading And Writing on Quora\\
 \textbullet{} Cricket\\
-\sectionsep
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %     COLUMN TWO
@@ -146,12 +148,12 @@ HackerRank://  \href{https://www.hackerrank.com/namanagg_2010}{\custombold{{Nama
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Education} 
 \subsection{Guru Tegh Bahadur Institute Of Technology | GGSIPU}
-\descript{Bachelor Of Engineering in Computer Science} \\
+\descript{Bachelor Of Engineering in Computer Science} 
 \location{Expected: AUG 2022 | New Delhi, India}
 GPA: \textbf{8.80 / 10.00} \vspace{1mm}
 \subsection{Bal Bharati Public School, Dwarka | CBSE}
 \location{Grade March 2018 | New Delhi, India}
-Percentage: \textbf{93\%} \vspace{1mm}
+Percentage: \textbf{92.6\%} \vspace{1mm}
 \subsection{Bal Bharati Public School, Dwarka | CBSE}
 \location{Grade March 2016 | New Delhi, India} 
 CGPA: \textbf{9.6}
@@ -164,7 +166,7 @@ CGPA: \textbf{9.6}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Experience}
-\runsubsection{Icons Team |}
+\href{https://iconsteam.com/}{\runsubsection{Icons Team |}}
 \descript{Intern}
 \location{SEP 2020 – DEC 2020 | New Delhi, India}
 \vspace{\topsep} % Hacky fix for awkward extra vertical space
@@ -189,33 +191,33 @@ CGPA: \textbf{9.6}
 \item Used {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries JQuery, HTML, CSS} for UI and {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries Graph Data Structures} to implement excel formulas. 
 \end{tightemize}
 
+\vspace{1mm}
 \href{https://github.com/NamanAgg/LinkedInBot}{\runsubsection{LinkedIn Referral Bot |}}
 \href{https://github.com/NamanAgg/LinkedInBot}{\descript{\custombold{GitHub}}}
 \begin{tightemize}\item Built a LinkedIn bot that asks for a referral of a particular company.
-\item Features of this project is it takes company name, job id and job link as input and then send message to connections of that company for referral.
+\item It is an {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries automation project} and the features of this project that it takes company name, job id and job link as input and then send message to connections of that company for referral.
 \item Used {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries JavaScript,Puppeteer and NodeJS.} 
 \end{tightemize}
 
+\vspace{1mm}
 \href{https://namanagg.github.io/Camera-Cure/}{\runsubsection{Camera Cure |}}
 \href{https://github.com/NamanAgg/Camera-Cure}{\descript{\custombold{GitHub}}}
 \begin{tightemize}\item Created a camera app with capturing, filter on photo during capturing, recording features using {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries HTML,CSS,JavaScript and MediaDevices.}
 \item Used {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries IndexedDB} for client side storage to implement gallery feature. 
 \end{tightemize}
 
+\vspace{1mm}
 \href{https://github.com/NamanAgg/KeeperApp}{\runsubsection{Keeper App |}}
 \href{https://github.com/NamanAgg/KeeperApp}{\descript{\custombold{GitHub}}}
 \begin{tightemize}\item An app used to take short notes and keep it on wall of the app(online sticky notes).
 \item A frontend project created using {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries React.}
 \end{tightemize}
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Position Of Responsibility
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Certificates and Trainings}
-\runsubsection{PepCoding Placement Program |}
+\runsubsection{Software Development Trainee at PepCoding |}
 \descript{Trainee}
 \location{Dec 2020 – Present}
 \runsubsection{Data Structures and Algorithm with JAVA at Coding Blocks(CRUX) |}
