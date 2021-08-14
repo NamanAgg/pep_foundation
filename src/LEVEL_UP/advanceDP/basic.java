@@ -605,17 +605,18 @@ public class basic {
     public static int divideInKGroup_tabu(int N, int K, int[][] dp) {
         for (int k = 0; k <= K; k++)
             for (int n = 0; n <= N; n++) {
+                if(k>n) break;
                 if (k == 1 || n == k) {
                     dp[n][k] = 1;
                     continue;
                 }
-                int selfSet = dp[n - 1][k - 1];
-                int partOfAnotherSet = dp[n - 1][k] * k;
+                int selfSet = dp[n - 1][k - 1]; //divideInKGroup(n - 1, k - 1, dp);
+                int partOfAnotherSet = dp[n - 1][k] * k; //divideInKGroup(n - 1, k, dp) * k;
 
                 dp[n][k] = selfSet + partOfAnotherSet;
             }
 
-            return dp[N][K];
+        return dp[N][K];
     }
 
     public static void divideInKgroup() {
