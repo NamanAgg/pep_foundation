@@ -1,0 +1,231 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Deedy - One Page Two Column Resume
+% LaTeX Template
+% Version 1.2 (16/9/2014)
+%
+% Original author:
+% Naman Aggarwal
+%
+% Original repository:
+% https://github.com/deedydas/Deedy-Resume
+%
+% IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+%
+% This template uses several fonts not included with Windows/Linux by
+% default. If you get compilation errors saying a font is missing, find the line
+% on which the font is used and either change it to a font included with your
+% operating system or comment the line out to use the default font.
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% TODO:
+% 1. Integrate biber/bibtex for article citation under publications.
+% 2. Figure out a smoother way for the document to flow onto the next page.
+% 3. Add styling information for a "Projects/Hacks" section.
+% 4. Add location/address information
+% 5. Merge OpenFont and MacFonts as a single sty with options.
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Known Issues:
+% 1. Overflows onto second page if any column's contents are more than the
+% vertical limit
+% 2. Hacky space on the first bullet point on the second column.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[]{deedy-resume-openfont}
+
+\usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{xcolor}
+\pagestyle{fancy}
+\fancyhf{}
+ 
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     TITLE NAME
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\namesection{}{Naman Aggarwal}{ \urlstyle{same}
+\href{mailto:namanagg.2010@gmail.com}{namanagg.2010@gmail.com} | +91 8527001581 | New Delhi, India
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COLUMN ONE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{minipage}[t]{0.33\textwidth} 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     LINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Links} 
+LinkedIn://  \href{https://www.linkedin.com/in/NamanAgg20}{\custombold{{NamanAgg20}}} \\
+GitHub://  \href{https://www.github.com/NamanAgg}{\custombold{{NamanAgg}}} \\
+LeetCode://  \href{https://www.leetcode.com/namanagg177}{\custombold{{NamanAgg177}}} \\
+HackerRank://  \href{https://www.hackerrank.com/namanagg_2010}{\custombold{{NamanAgg\_2010}}} \\
+\sectionsep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     COURSEWORK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Coursework}
+\textbullet{} Data Structures \\
+\textbullet{} Algorithms\\
+\textbullet{} Object Oriented Programming \\
+\textbullet{} Database Management System \\
+\textbullet{} Web Development \\
+\textbullet{} Operating Systems \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     SKILLS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Skills}
+\subsection{Programming}
+\vspace{2mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     \location{Over 10000+ lines:}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbullet{} Java \\
+\textbullet{} JavaScript \\
+\textbullet{} HTML \\
+\textbullet{} CSS \\
+\textbullet{} C \\
+\textbullet{} C++ \\
+\textbullet{} Node.JS \\
+\textbullet{} React.JS \\
+\textbullet{} Express.JS \\
+\textbullet{} Git \\
+\textbullet{} Puppeteer \\
+\subsection{Database}
+\vspace{2mm}
+\textbullet{} MongoDB ( NoSQL ) \\
+\textbullet{} MySQL ( SQL ) \\
+\subsection{Familiar}
+\vspace{2mm}
+\textbullet{} Python \\
+\textbullet{} Machine Learning \\
+\textbullet{} MATLAB \\
+\textbullet{} LateX \\
+\textbullet{} Socket.io \\
+\textbullet{} Selenium 
+\sectionsep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     HOBBIES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{HOBBIES}
+\textbullet{} Learning New Technical Skills \\
+\textbullet{} Reading And Writing on Quora\\
+\textbullet{} Cricket\\
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COLUMN TWO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{minipage} 
+\hfill
+\begin{minipage}[t]{0.66\textwidth} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     EDUCATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Education} 
+\subsection{Guru Tegh Bahadur Institute Of Technology | GGSIPU}
+\descript{Bachelor Of Engineering in Computer Science} \\
+\location{Expected: AUG 2022 | New Delhi, India}
+GPA: \textbf{8.80 / 10.00} \vspace{1mm}
+\subsection{Bal Bharati Public School, Dwarka | CBSE}
+\location{Grade March 2018 | New Delhi, India}
+Percentage: \textbf{93\%} \vspace{1mm}
+\subsection{Bal Bharati Public School, Dwarka | CBSE}
+\location{Grade March 2016 | New Delhi, India} 
+CGPA: \textbf{9.6}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experience}
+\runsubsection{Icons Team |}
+\descript{Intern}
+\location{SEP 2020 – DEC 2020 | New Delhi, India}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}\item Worked in backend for developing an Examination website and a streaming website from the scratch and implemented {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries authentication, routing, databases, CRUD functionalities,and an admin panel}.
+\item Used {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries HTML, CSS, JavaScript, MongoDB, NodeJS, Express, EJS} 
+% \item We Started Web Development Course for our Students.
+\end{tightemize}
+
+% \runsubsection{PEPCODING.COM}
+% \descript{| TEACHER ASSISTANT }
+% \location{JUN 2018 – AUG 2018|Delhi, India }
+% \begin{tightemize}
+% \item Teacher Assistant for Data Structure And Algorithm Using JAVA.
+% \end{tightemize}
+% \sectionsep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   PROJECTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{PROJECTS} \href{https://namanagg.github.io/ExcelClone/}{\runsubsection{Excel Clone |}}
+\href{https://github.com/NamanAgg/DOM/tree/master/Excel%20Clone}{\descript{\custombold{GitHub}}}
+\begin{tightemize}\item Created a spreadsheet application and implemented features such as selecting multiple cells, formula bar, having multiple spreadsheets, etc.
+\item Used {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries JQuery, HTML, CSS} for UI and {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries Graph Data Structures} to implement excel formulas. 
+\end{tightemize}
+
+\href{https://github.com/NamanAgg/LinkedInBot}{\runsubsection{LinkedIn Referral Bot |}}
+\href{https://github.com/NamanAgg/LinkedInBot}{\descript{\custombold{GitHub}}}
+\begin{tightemize}\item Built a LinkedIn bot that asks for a referral of a particular company.
+\item Features of this project is it takes company name, job id and job link as input and then send message to connections of that company for referral.
+\item Used {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries JavaScript,Puppeteer and NodeJS.} 
+\end{tightemize}
+
+\href{https://namanagg.github.io/Camera-Cure/}{\runsubsection{Camera Cure |}}
+\href{https://github.com/NamanAgg/Camera-Cure}{\descript{\custombold{GitHub}}}
+\begin{tightemize}\item Created a camera app with capturing, filter on photo during capturing, recording features using {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries HTML,CSS,JavaScript and MediaDevices.}
+\item Used {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries IndexedDB} for client side storage to implement gallery feature. 
+\end{tightemize}
+
+\href{https://github.com/NamanAgg/KeeperApp}{\runsubsection{Keeper App |}}
+\href{https://github.com/NamanAgg/KeeperApp}{\descript{\custombold{GitHub}}}
+\begin{tightemize}\item An app used to take short notes and keep it on wall of the app(online sticky notes).
+\item A frontend project created using {\fontspec[Path = fonts/lato/]{Lato-Bol}\selectfont\bfseries React.}
+\end{tightemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Position Of Responsibility
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Certificates and Trainings}
+\runsubsection{PepCoding Placement Program |}
+\descript{Trainee}
+\location{Dec 2020 – Present}
+\runsubsection{Data Structures and Algorithm with JAVA at Coding Blocks(CRUX) |}
+\descript{Certification Course}
+\location{May 2019 – July 2019}
+\runsubsection{Full Stack Development from Udemy |}
+\descript{Certification Course}
+\location{Jun 2020 – Aug 2020}
+
+
+
+\end{minipage} 
+\end{document}
