@@ -7,19 +7,23 @@
 // 5. Observation 
 // 6. Tabulation 
 // 7. Optimization
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.*;
 
-public class basic {
-    public static void display(int[] arr) {
-        for (int ele : arr) {
+public class TwoPointers {
+    /*
+     * 1. Faith 2. Recursive Tree 3. Recursion Code 4. Convert Recursion code into
+     * memoization 5. Observation 6. Tabulation 7. Optimization
+     */
+
+    public static void display(int[] dp) {
+        for (int ele : dp) {
             System.out.print(ele + " ");
         }
         System.out.println();
     }
 
-    public static void display2D(int[][] arr) {
-        for (int[] ar : arr) {
+    public static void display2D(int[][] dp) {
+        for (int[] ar : dp) {
             display(ar);
         }
         System.out.println();
@@ -72,6 +76,7 @@ public class basic {
         display(dp);
     }
 
+    // total no of paths from all given direction
     public static int mazePath_memo(int sr, int sc, int er, int ec, int[][] dir, int[][] dp) {
         if (sr == er && sc == ec) {
             return dp[sr][sc] = 1;
@@ -81,32 +86,57 @@ public class basic {
             return dp[sr][sc];
 
         int count = 0;
-        for (int d = 0; d < dir.length; d++) {
-            int r = sr + dir[d][0];
-            int c = sc + dir[d][1];
-            if (r >= 0 && c >= 0 && r <= er && c <= ec) {
+        for (int[] d : dir) {
+            int r = sr + d[0];
+            int c = sc + d[1];
+
+            if (r >= 0 && c >= 0 && r <= er && c <= ec)
                 count += mazePath_memo(r, c, er, ec, dir, dp);
-            }
         }
 
         return dp[sr][sc] = count;
     }
 
-    public static int mazePath_DP(int SR, int SC, int er, int ec, int[][] dir, int[][] dp) {
-
-        for (int sr = er; sr >= 0; sr--) {
-            for (int sc = ec; sc >= 0; sc--) {
+    public static int mazePath_tabu(int SR, int SC, int er, int ec, int[][] dir, int[][] dp) {
+        for (int sr = er; sr >= SR; sr--) {
+            for (int sc = ec; sc >= SC; sc--) {
                 if (sr == er && sc == ec) {
                     dp[sr][sc] = 1;
                     continue;
                 }
 
                 int count = 0;
-                for (int d = 0; d < dir.length; d++) {
-                    int r = sr + dir[d][0];
-                    int c = sc + dir[d][1];
-                    if (r >= 0 && c >= 0 && r <= er && c <= ec) {
-                        count += dp[r][c];// mazePath_memo(r, c, er, ec, dir, dp);
+                for (int[] d : dir) {
+                    int r = sr + d[0];
+                    int c = sc + d[1];
+
+                    if (r <= er && c <= ec)
+                        count += dp[r][c];// mazePath(r, c, er, ec, dir, dp);
+                }
+
+                dp[sr][sc] = count;
+            }
+        }
+
+        return dp[SR][SC];
+    }
+
+    public static int mazePathJump_tabu(int SR, int SC, int er, int ec, int[][] dir, int[][] dp) {
+        for (int sr = er; sr >= SR; sr--) {
+            for (int sc = ec; sc >= SC; sc--) {
+                if (sr == er && sc == ec) {
+                    dp[sr][sc] = 1;
+                    continue;
+                }
+
+                int count = 0;
+                for (int[] d : dir) {
+                    int r = sr + d[0];
+                    int c = sc + d[1];
+                    while (r <= er && c <= ec) {
+                        count += dp[r][c];// mazePath(r, c, er, ec, dir, dp);
+                        r += d[0];
+                        c += d[1];
                     }
                 }
 
@@ -118,164 +148,88 @@ public class basic {
     }
 
     public static void mazePath_Set() {
-        int n = 4;
-        int[][] dp = new int[n][n];
+        int sr = 0, sc = 0, er = 2, ec = 2;
+        int[][] dp = new int[er + 1][ec + 1];
         int[][] dir = { { 0, 1 }, { 1, 0 }, { 1, 1 } };
-        // System.out.println(mazePath_memo(0, 0, n-1, n-1, dir, dp));
-        System.out.println(mazePath_DP(0, 0, n - 1, n - 1, dir, dp));
-        display2D(dp);
+        System.out.println(mazePath_memo(sr, sc, er, ec, dir, dp));
+        // System.out.println(mazePath_tabu(sr, sc, er, ec, dir, dp));
+        System.out.println(mazePathJump_tabu(sr, sc, er, ec, dir, dp));
 
+        display2D(dp);
     }
 
-    public static int mazePathJump_memo(int sr, int sc, int er, int ec, int[][] dir, int[][] dp) {
-        if (sr == er && sc == ec) {
-            return dp[sr][sc] = 1;
+    // Gold Mine.
+    public static int goldMine_memo_(int sr, int sc, int[][] mat, int[][] dir, int[][] dp) {
+        if (sc == mat[0].length - 1) {
+            return dp[sr][sc] = mat[sr][sc];
         }
 
-        if (dp[sr][sc] != 0)
+        if (dp[sr][sc] != -1)
             return dp[sr][sc];
 
-        int count = 0;
-        for (int d = 0; d < dir.length; d++) {
-            for (int rad = 1; rad <= er; rad++) {
-                int r = sr + rad * dir[d][0];
-                int c = sc + rad * dir[d][1];
-                if (r >= 0 && c >= 0 && r <= er && c <= ec) {
-                    count += mazePathJump_memo(r, c, er, ec, dir, dp);
-                } else
-                    break;
-            }
+        int maxGold = 0;
+        for (int[] d : dir) {
+            int r = sr + d[0];
+            int c = sc + d[1];
+
+            if (r >= 0 && c >= 0 && r < mat.length && c < mat[0].length)
+                maxGold = Math.max(maxGold, goldMine_memo_(r, c, mat, dir, dp) + mat[sr][sc]);
         }
 
-        return dp[sr][sc] = count;
+        return dp[sr][sc] = maxGold;
     }
 
-    public static int mazePathJump_DP(int SR, int SC, int er, int ec, int[][] dir, int[][] dp) {
-
-        for (int sr = er; sr >= 0; sr--) {
-            for (int sc = ec; sc >= 0; sc--) {
-                if (sr == er && sc == ec) {
-                    dp[sr][sc] = 1;
-                    continue;
-                }
-
-                int count = 0;
-                for (int d = 0; d < dir.length; d++) {
-                    for (int rad = 1; rad <= Math.max(er, ec); rad++) {
-                        int r = sr + rad * dir[d][0];
-                        int c = sc + rad * dir[d][1];
-                        if (r >= 0 && c >= 0 && r <= er && c <= ec) {
-                            count += dp[r][c];// mazePathJump_memo(r, c, er, ec, dir, dp);
-                        } else
-                            break;
-                    }
-                }
-
-                dp[sr][sc] = count;
-            }
-        }
-
-        return dp[SR][SC];
-    }
-
-    public static int maxGold() {
-        int n = 4, m = 4;
-        int[][] M = { { 1, 3, 1, 5 }, { 2, 2, 4, 1 }, { 5, 0, 2, 3 }, { 0, 6, 1, 2 } };
-        return maxGold(n, m, M);
-    }
-
-    public static int maxGold(int n, int m, int arr[][]) {
-        int[][] dir = { { -1, 1 }, { 0, 1 }, { 1, 1 } };
+    public static int goldMine_memo(int n, int m, int[][] mat) {
+        int[][] dir = { { -1, 1 }, { 1, 1 }, { 0, 1 } };
         int[][] dp = new int[n][m];
-        for (int[] d : dp)
-            Arrays.fill(d, -1);
-
-        // int maxGold = 0;
-        // for (int i = 0; i < n; i++) {
-        // maxGold = Math.max(maxGold, goldMine_memo(arr, i, 0, dp, dir));
-        // }
-        // return maxGold;
-        return goldMine_dp(arr, n - 1, m - 1, dp, dir);
-
-    }
-
-    public static int goldMine_memo(int[][] arr, int r, int c, int[][] dp, int[][] dir) {
-        if (c == arr[0].length - 1) {
-            return dp[r][c] = arr[r][c];
-        }
-
-        if (dp[r][c] != -1)
-            return dp[r][c];
 
         int maxGold = 0;
-        for (int d = 0; d < dir.length; d++) {
-            int x = r + dir[d][0];
-            int y = c + dir[d][1];
-
-            if (x >= 0 && y >= 0 && x < arr.length && y < arr[0].length)
-                maxGold = Math.max(maxGold, goldMine_memo(arr, x, y, dp, dir) + arr[r][c]);
+        for (int r = 0; r < n; r++) {
+            maxGold = Math.max(maxGold, goldMine_memo_(r, 0, mat, dir, dp));
         }
 
-        return dp[r][c] = maxGold;
+        return maxGold;
     }
 
-    public static int goldMine_dp(int[][] arr, int R, int C, int[][] dp, int[][] dir) {
-        for (int c = C; c >= 0; c--) {
-            for (int r = R; r >= 0; r--) {
-                if (c == arr[0].length - 1) {
-                    dp[r][c] = arr[r][c];
+    public static int goldMine_Tabu(int SR, int SC, int[][] mat, int[][] dir, int[][] dp) {
+        for (int sc = mat[0].length - 1; sc >= SC; sc--) {
+            for (int sr = mat.length - 1; sr >= SR; sr--) {
+                if (sc == mat[0].length - 1) {
+                    dp[sr][sc] = mat[sr][sc];
                     continue;
                 }
 
                 int maxGold = 0;
-                for (int d = 0; d < dir.length; d++) {
-                    int x = r + dir[d][0];
-                    int y = c + dir[d][1];
+                for (int[] d : dir) {
+                    int r = sr + d[0];
+                    int c = sc + d[1];
 
-                    if (x >= 0 && y >= 0 && x < arr.length && y < arr[0].length)
-                        maxGold = Math.max(maxGold, dp[x][y] + arr[r][c]);
+                    if (r >= 0 && c >= 0 && r < mat.length && c < mat[0].length)
+                        maxGold = Math.max(maxGold, dp[r][c] + mat[sr][sc]);
                 }
-                dp[r][c] = maxGold;
+
+                dp[sr][sc] = maxGold;
             }
         }
 
         int maxGold = 0;
-        for (int i = 0; i <= R; i++) {
-            maxGold = Math.max(maxGold, dp[i][0]);
+        for (int r = 0; r < mat.length; r++) {
+            maxGold = Math.max(maxGold, dp[r][0]);
         }
+
         return maxGold;
     }
 
-    public static int getMaximumGold(int[][] grid) {
-
-        int[][] dir = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
-        boolean[][] vis = new boolean[grid.length][grid[0].length];
-        int res = 0;
-
-        for (int i = 0; i < grid.length; i++)
-            for (int j = 0; j < grid[0].length; j++)
-                if (grid[i][j] != 0)
-                    res = Math.max(res, dfs(i, j, grid, vis, dir));
-
-        return res;
-    }
-
-    public static int dfs(int sr, int sc, int[][] grid, boolean[][] vis, int[][] dir) {
-        if (grid[sr][sc] == 0)
-            return 0;
-
-        vis[sr][sc] = true;
-        int res = 0;
-        for (int i = 0; i < dir.length; i++) {
-            int r = sr + dir[i][0];
-            int c = sc + dir[i][1];
-
-            if (r >= 0 && c >= 0 && r < grid.length && c < grid[0].length && !vis[r][c] && grid[r][c] != 0)
-                res = Math.max(res, dfs(r, c, grid, vis, dir));
+    // 70
+    public int climbStairs(int n) {
+        int a = 1, b = 1;
+        for (int i = 0; i < n; i++) {
+            int sum = a + b;
+            a = b;
+            b = sum;
         }
-        res += grid[sr][sc];
-        vis[sr][sc] = false;
-        return res;
+
+        return a;
     }
 
     // 746
@@ -331,21 +285,6 @@ public class basic {
         }
 
         return dp[SP];
-    }
-
-    public int boradPath_Opti(int n) {
-        LinkedList<Integer> ll = new LinkedList<>();
-
-        ll.addLast(1);
-        ll.addLast(1);
-        for (int i = 2; i <= n; i++) {
-            if (ll.size() <= 6)
-                ll.addLast(ll.getLast() * 2);
-            else
-                ll.addLast(ll.getLast() * 2 - ll.removeFirst());
-        }
-
-        return ll.getLast();
     }
 
     public static void board_path() {
@@ -602,37 +541,38 @@ public class basic {
         return dp[n][k] = selfSet + partOfAnotherSet;
     }
 
-    public static int divideInKGroup_tabu(int N, int K, int[][] dp) {
-        for (int k = 0; k <= K; k++)
-            for (int n = 0; n <= N; n++) {
-                if(k>n) break;
+    public static int divideInKGroup_DP(int N, int K, int[][] dp) {
+        for (int n = 1; n <= N; n++) {
+            for (int k = 1; k <= K; k++) {
+                if (k > n)
+                    break;
+
                 if (k == 1 || n == k) {
                     dp[n][k] = 1;
                     continue;
                 }
-                int selfSet = dp[n - 1][k - 1]; //divideInKGroup(n - 1, k - 1, dp);
-                int partOfAnotherSet = dp[n - 1][k] * k; //divideInKGroup(n - 1, k, dp) * k;
+
+                int selfSet = dp[n - 1][k - 1];// divideInKGroup(n - 1, k - 1, dp);
+                int partOfAnotherSet = dp[n - 1][k] * k;// divideInKGroup(n - 1, k, dp) * k;
 
                 dp[n][k] = selfSet + partOfAnotherSet;
             }
+        }
 
         return dp[N][K];
     }
 
-    public static void divideInKgroup() {
+    public static void divideInKGroup() {
         int n = 5, k = 3;
         int[][] dp = new int[n + 1][k + 1];
+        for (int[] d : dp)
+            Arrays.fill(d, -1);
         System.out.println(divideInKGroup(n, k, dp));
-
+        display2D(dp);
     }
 
     public static void main(String[] args) {
-        // fibo_Set();
-        // mazePath_Set();
-        // maxGold();
-        // int[][] grid = { { 0, 6, 0 }, { 5, 8, 7 }, { 0, 9, 0 } };
-        // System.out.println(getMaximumGold(grid));
-        divideInKgroup();
+        divideInKGroup();
     }
 
 }
