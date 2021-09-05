@@ -2,6 +2,7 @@ import java.util.*;
 
 public class CutSet {
 
+ 
     public static void display(int[] dp) {
         for (int ele : dp) {
             System.out.print(ele + " ");
@@ -226,5 +227,4 @@ public class CutSet {
     public static void main(String[] args) {
         minMaxEvaluation();
     }
-
 }
