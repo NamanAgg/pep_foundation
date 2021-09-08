@@ -224,6 +224,34 @@ public class CutSet {
         return countWays(S, 0, N - 1, dp).tCount;
     }
 
+    // OBST
+    // https://www.geeksforgeeks.org/optimal-binary-search-tree-dp-24/
+    public static int sumOfFreq(int i,int j,int[]freq){
+        int sum=0;
+        while(i<=j){
+            sum+=freq[i];
+            i++;
+        }
+        return sum;
+    }
+
+    public static int obst_memo(int[]nodes, int[]freq, int si, int ei, int[][]dp){
+        if(dp[si][ei]!=-1){
+            return dp[si][ei];
+        }
+
+        int minAns=(int)1e9;
+        for(int cut=si;cut<=ei;cut++){
+            int leftRes = cut==si ? 0 : obst_memo(nodes,freq,si,cut-1,dp);
+            int rightRes = cut==ei ? 0 : obst_memo(nodes,freq,cut+1,ei,dp);
+            
+            int myAns = leftRes + sumOfFreq(si,ei,freq) + rightRes;
+            minAns=Math.min(minAns,myAns);
+        }
+
+        return dp[si][ei]=minAns;
+    }
+
     public static void main(String[] args) {
         minMaxEvaluation();
     }
